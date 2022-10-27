@@ -1,0 +1,17 @@
+body {
+    padding: 15px;
+    background: #F0F0F0;
+}
+
+.images {
+    width: 10%;
+    margin: 10px;
+}
+.product {
+    margin: 20px;
+}
+
+p {
+    width: 150px;
+    text-align: center;
+}
