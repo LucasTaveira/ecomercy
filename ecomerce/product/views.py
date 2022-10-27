@@ -23,3 +23,30 @@ class ProductView(viewsets.ModelViewSet):
             return Response(
                 data={'detail': 'Necessário logar para cadastrar produtos'},
                 status=status.HTTP_401_UNAUTHORIZED)
+            
+    def update(self, request, *args, **kwargs):
+        
+        try:
+            if self.request.user.type == User.Type.SELLER and request.user.id == self.request.user.id:
+                return super().update(request, *args, **kwargs)
+            else:
+                return Response(
+                    data={'detail':'Acesso Negado'}, 
+                    status=status.HTTP_401_UNAUTHORIZED)
+        except:
+            return Response(
+                data={'detail': 'Necessário logar para cadastrar produtos'},
+                status=status.HTTP_401_UNAUTHORIZED)
+            
+    def destroy(self, request, *args, **kwargs):
+        try:
+            if self.request.user.type == User.Type.SELLER and request.user.id == self.request.user.id:
+                return super().destroy(request, *args, **kwargs)
+            else:
+                return Response(
+                    data={'detail':'Acesso Negado'}, 
+                    status=status.HTTP_401_UNAUTHORIZED)
+        except:
+            return Response(
+                data={'detail': 'Necessário logar para cadastrar produtos'},
+                status=status.HTTP_401_UNAUTHORIZED)
