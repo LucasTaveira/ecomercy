@@ -12,17 +12,15 @@ class ProductView(viewsets.ModelViewSet):
             
     def create(self, request, *args, **kwargs):
 
-        try:
-            if self.request.user.type == User.Type.SELLER:
-                return super().create(request, *args, **kwargs)
-            else:
-                return Response(
-                    data={'detail':'Acesso Negado'}, 
-                    status=status.HTTP_401_UNAUTHORIZED)
-        except:
-            return Response(
-                data={'detail': 'Necessário logar para cadastrar produtos'},
-                status=status.HTTP_401_UNAUTHORIZED)
+        return super().create(request, *args, **kwargs)
+        #     else:
+        #         return Response(
+        #             data={'detail':'Acesso Negado'}, 
+        #             status=status.HTTP_401_UNAUTHORIZED)
+        # except:
+        #     return Response(
+        #         data={'detail': 'Necessário logar para cadastrar produtos'},
+        #         status=status.HTTP_401_UNAUTHORIZED)
             
     def update(self, request, *args, **kwargs):
         

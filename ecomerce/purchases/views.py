@@ -46,6 +46,7 @@ class ShoppingCartViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
 
         try:
+            import pdb; pdb.set_trace()
             if self.request.user == User.Type.CLIENT:
                 final_value = 0
                 itens = ItensShoppingCart.objects.filter(
